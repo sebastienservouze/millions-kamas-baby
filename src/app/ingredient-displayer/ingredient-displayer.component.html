@@ -1,0 +1,12 @@
+<div class="all">
+    <div class="infos">
+        <img src="{{ 'assets/imgs/' + ingredient.picture + '.png' }}" height="24">
+        <span style="margin-left: 5px;">{{ ingredient.count }} x </span>
+        <span>{{ ingredient.name }}</span>
+    </div>
+
+    <div class="inputs">
+        <input type="number" [(ngModel)]="unitaryPrice" (ngModelChange)="onUnitaryPriceChange()">
+    </div>
+
+</div>

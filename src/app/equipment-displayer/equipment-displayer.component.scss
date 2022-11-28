@@ -1,0 +1,46 @@
+.stats {
+    background-color: #DDD;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #555;
+}
+
+.equipment {
+    background-color: #DDD;
+}
+
+.level {
+    color: #AAA;
+}
+
+.ingredients {
+    padding: 10px;
+}
+
+h1 {
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #FFF;
+    margin: 0px;
+}
+
+.picture {
+    padding: 10px;
+    background-color: #CCC;
+}
+
+li {
+    list-style-type: none;
+}
+
+.display {
+    display: flex;
+    flex-direction: row;
+}

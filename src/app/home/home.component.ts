@@ -14,21 +14,36 @@ export class HomeComponent implements OnInit {
   control = new FormControl('')
   equipments?: Item[];
   filteredEquipments?: Item[];
+  selectedEquipment?: Item;
 
   constructor(private itemsService: ItemsService) { }
 
   ngOnInit(): void {
     this.itemsService.getEquipments().subscribe((equipments: Item[]) => {
       this.equipments = equipments.sort();
-      this.filteredEquipments = this.equipments;
+
+      let selectedItemName = localStorage.getItem('selectedItemName')
+      if (selectedItemName) {
+        console.log(selectedItemName);
+        this.control.setValue(selectedItemName);
+      }
     });
 
-    this.control.valueChanges.pipe(startWith('')).subscribe((text: string | null) => {
-      if (text && typeof(text) === 'string') this.filteredEquipments = this.equipments?.sort().filter((equipment: Item) => equipment.name.toLowerCase().includes(text.toLowerCase())).sort()
+    this.control.valueChanges.subscribe(itemName => {
+      console.log('Value changes', itemName);
+      this.filter(itemName);
+      if (this.filteredEquipments.filter(item => item.name === itemName).length === 1) {
+        this.selectedEquipment = this.findEquipmentByName(itemName);
+        localStorage.setItem('selectedItemName', '' + itemName);
+      }    
     });
   }
 
-  displayFn(equipment: Item): string {
-    return equipment && equipment.name ? equipment.name : '';
+  filter(itemName: string) {
+    if (itemName) this.filteredEquipments = this.equipments.filter((equipment: Item) => equipment.name.toLowerCase().includes(itemName.toLowerCase())).slice(0, 50).sort();
+  }
+
+  findEquipmentByName(itemName: string): Item {
+    return this.equipments.filter((equipment: Item) => equipment.name.toLowerCase() === itemName.toLowerCase())[0];
   }
 }

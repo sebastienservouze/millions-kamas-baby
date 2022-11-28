@@ -1,0 +1,29 @@
+<div class="equipment" *ngIf="equipment">
+    <div class="header">
+        <h1>{{ equipment.name }}</h1>
+        <h1 class="level">Niveau {{ equipment.level }}</h1>
+    </div>
+
+    <div class="display">
+        <img class="picture" src="{{ 'assets/imgs/' + equipment.picture + '.png' }}" height="200">
+
+        <div class="stats">
+            <app-effect-displayer *ngFor="let effect of equipment.effects" [effect]="effect"></app-effect-displayer>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1>Craft</h1>
+        <h1 class="level">Prix unitaire</h1>
+    </div>
+
+    <div class="ingredients">
+        <app-ingredient-displayer *ngFor="let ingredient of equipment.ingredients; let i = index" [ingredient]="ingredient" (newPriceEvent)="onUnitaryPriceChange($event, i)"></app-ingredient-displayer>
+    </div>
+
+    <div class="header">
+        <h1>Prix total</h1>
+        <h1>{{ totalPrice }}</h1>
+    </div>
+</div>
+
