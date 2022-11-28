@@ -1,0 +1,15 @@
+<div class="container">
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Equipement</mat-label>
+          <input type="text" matInput placeholder="Rechercher un équipement" [formControl]="control" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let equipment of filteredEquipments" [value]="equipment">
+              {{equipment.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
+</div>

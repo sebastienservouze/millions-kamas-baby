@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DofusBookService } from './dofus-book.service';
+import { ItemsService } from './items.service';
 
-describe('DofusBookService', () => {
-  let service: DofusBookService;
+describe('ItemsService', () => {
+  let service: ItemsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DofusBookService);
+    service = TestBed.inject(ItemsService);
   });
 
   it('should be created', () => {

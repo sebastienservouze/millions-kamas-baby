@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from './models/item.model';
-import { DofusBookService } from './services/dofus-book.service';
+import { ItemsService } from './services/items.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { DofusBookService } from './services/dofus-book.service';
 })
 export class AppComponent implements OnInit {
   
-  constructor(private dofusBookService: DofusBookService) {}
+  constructor() { }
 
   ngOnInit(): void {
     
