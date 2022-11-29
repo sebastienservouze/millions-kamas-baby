@@ -18,12 +18,12 @@
     </div>
 
     <div class="ingredients">
-        <app-ingredient-displayer *ngFor="let ingredient of equipment.ingredients; let i = index" [ingredient]="ingredient" (newPriceEvent)="onUnitaryPriceChange($event, i)"></app-ingredient-displayer>
+        <app-ingredient-displayer *ngFor="let ingredient of equipment.ingredients; let i = index" [ingredient]="ingredient" (newPriceEvent)="computePrice()"></app-ingredient-displayer>
     </div>
 
     <div class="header">
         <h1>Prix total</h1>
-        <h1>{{ totalPrice }}</h1>
+        <h1>{{ equipment.lastPrice }}</h1>
     </div>
 </div>
 

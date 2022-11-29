@@ -24,17 +24,14 @@ export class HomeComponent implements OnInit {
 
       let selectedItemName = localStorage.getItem('selectedItemName')
       if (selectedItemName) {
-        console.log(selectedItemName);
         this.control.setValue(selectedItemName);
       }
     });
 
     this.control.valueChanges.subscribe(itemName => {
-      console.log('Value changes', itemName);
       this.filter(itemName);
       if (this.filteredEquipments.filter(item => item.name === itemName).length === 1) {
-        this.selectedEquipment = this.findEquipmentByName(itemName);
-        localStorage.setItem('selectedItemName', '' + itemName);
+        this.selectEquipment(itemName);
       }    
     });
   }
@@ -45,5 +42,22 @@ export class HomeComponent implements OnInit {
 
   findEquipmentByName(itemName: string): Item {
     return this.equipments.filter((equipment: Item) => equipment.name.toLowerCase() === itemName.toLowerCase())[0];
+  }
+
+  selectEquipment(itemName: string) {
+    this.selectedEquipment = this.findEquipmentByName(itemName);
+    localStorage.setItem('selectedItemName', '' + itemName);
+
+    this.itemsService.getIngredients(this.selectedEquipment).subscribe((ings: []) => {
+      this.selectedEquipment.ingredients = ings;
+      this.computePrice();
+    });
+  }
+
+  computePrice() {
+    if (this.selectedEquipment.ingredients.some((ing: any) => ing.lastPrice <= 0)) this.selectedEquipment.lastPrice = 0;
+    
+    this.selectedEquipment.lastPrice = 0;
+    this.selectedEquipment.ingredients.forEach((ing: any) => this.selectedEquipment.lastPrice += ing.lastPrice * ing.count);
   }
 }

@@ -9,29 +9,24 @@ import { Item } from '../models/item.model';
 export class EquipmentDisplayerComponent {
 
   _equipment: Item | null = null;
-  prices: number[] = [];
 
   @Input()
   set equipment(equipment: Item | null) {
     this._equipment = equipment;
-    this._equipment.ingredients.forEach(ing => this.prices.push(0));
+    this.computePrice();
   }
 
   get equipment(): Item | null {
     return this._equipment;
   }
 
-  totalPrice: number;
-
   constructor() { }
 
-  onUnitaryPriceChange(totalPriceForIngredient: number, index: number) {
-    this.prices[index] = totalPriceForIngredient;
-    console.log(this.prices);
-    if (!this.prices.some(price => price <= 0)) {
-      this.totalPrice = 0;
-      this.prices.forEach(price => this.totalPrice += price);
-    }
+  computePrice() {
+    if (this.equipment.ingredients.some((ing: any) => ing.lastPrice <= 0)) this.equipment.lastPrice = 0;
+    
+    this.equipment.lastPrice = 0;
+    this.equipment.ingredients.forEach((ing: any) => this.equipment.lastPrice += ing.lastPrice);
   }
 
 }
