@@ -58,6 +58,8 @@ export class HomeComponent implements OnInit {
     if (this.selectedEquipment.ingredients.some((ing: any) => ing.lastPrice <= 0)) this.selectedEquipment.lastPrice = 0;
     
     this.selectedEquipment.lastPrice = 0;
-    this.selectedEquipment.ingredients.forEach((ing: any) => this.selectedEquipment.lastPrice += ing.lastPrice * ing.count);
+    this.selectedEquipment.ingredients.forEach((ing: any) => {
+      this.selectedEquipment.lastPrice += ing.lastPrice * ing.count;
+    })
   }
 }

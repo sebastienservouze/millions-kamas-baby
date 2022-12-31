@@ -14,6 +14,10 @@ export class ItemsService {
     return this.httpClient.get<Item[]>('http://localhost:3000/items/equipments');
   }
 
+  getEquipment(name: string): Observable<Item> {
+    return this.httpClient.get<Item>(`http://localhost:3000/items/equipments/${name}`);
+  }
+
   getIngredients(item: Item): Observable<Item[]> {
     return this.httpClient.get<Item[]>(`http://localhost:3000/items/ingredients/${item.id}`)
   }

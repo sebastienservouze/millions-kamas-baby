@@ -22,8 +22,20 @@
     </div>
 
     <div class="header">
-        <h1>Prix total</h1>
-        <h1>{{ equipment.lastPrice }}</h1>
+        <h1>Prix</h1>
+    </div>
+
+    <div class="prix">
+        <div class="left">
+            <span>Prix du craft</span>
+            <span>Prix de revente</span>
+            <span>Bénéfices</span>
+        </div>
+        <div class="right">
+            <span>{{ equipment.lastPrice }}</span>
+            <input type="number" [(ngModel)]="equipment.last_seen_price" (ngModelChange)="onSellPriceChange()">
+            <span>{{ equipment.last_seen_price - equipment.lastPrice }}</span>
+        </div>
     </div>
 </div>
 

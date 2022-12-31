@@ -22,6 +22,22 @@
     padding: 10px;
 }
 
+.prix {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    text-align: right;
+}
+
 h1 {
     font-size: 20px;
     padding: 5px;

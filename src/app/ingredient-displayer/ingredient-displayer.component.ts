@@ -29,7 +29,6 @@ export class IngredientDisplayerComponent {
   constructor(private itemsService: ItemsService) {
     this.behaviour.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
       itemsService.patchItem(this.ingredient).subscribe();
-
     });
   }
 
