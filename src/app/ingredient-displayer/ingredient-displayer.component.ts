@@ -8,7 +8,7 @@ import { ItemsService } from '../services/items.service';
   templateUrl: './ingredient-displayer.component.html',
   styleUrls: ['./ingredient-displayer.component.scss']
 })
-export class IngredientDisplayerComponent {
+export class IngredientDisplayerComponent implements OnInit {
 
   _ingredient: Item | null = null;
 
@@ -21,20 +21,41 @@ export class IngredientDisplayerComponent {
     return this._ingredient;
   }
 
+  _itemTotalPrice: number;
+
+  @Input()
+  set itemTotalPrice(price: number) {
+    this._itemTotalPrice = price;
+    this.computePrices();
+  }
+
   @Output()
   newPriceEvent: EventEmitter<number> = new EventEmitter();
 
   behaviour: Subject<number> = new Subject();
+
+  totalPrice: number;
+  percentageOfItemPrice: number;
   
-  constructor(private itemsService: ItemsService) {
+  constructor(itemsService: ItemsService) {
     this.behaviour.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
       itemsService.patchItem(this.ingredient).subscribe();
     });
   }
 
+  ngOnInit(): void {
+    this.computePrices();
+  }
+
   onUnitaryPriceChange() {
     this.newPriceEvent.emit();
+    this.computePrices();
     this.behaviour.next(this.ingredient.lastPrice);
+  }
+
+  computePrices() {
+    this.totalPrice = this.ingredient.lastPrice * this.ingredient.count;
+    this.percentageOfItemPrice = Math.round(this.totalPrice / this._itemTotalPrice * 1000) / 10;
   }
 
 }

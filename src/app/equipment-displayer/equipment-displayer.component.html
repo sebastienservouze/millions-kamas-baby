@@ -18,24 +18,30 @@
     </div>
 
     <div class="ingredients">
-        <app-ingredient-displayer *ngFor="let ingredient of equipment.ingredients; let i = index" [ingredient]="ingredient" (newPriceEvent)="computePrice()"></app-ingredient-displayer>
+        <app-ingredient-displayer *ngFor="let ingredient of equipment.ingredients; let i = index" 
+        [ingredient]="ingredient" 
+        [itemTotalPrice]="equipment.lastPrice" 
+        (newPriceEvent)="computePrice()">
+        </app-ingredient-displayer>
     </div>
 
     <div class="header">
         <h1>Prix</h1>
+        <h1>{{ equipment.lastPrice }}<span class="k"> K</span></h1>
     </div>
 
     <div class="prix">
         <div class="left">
-            <span>Prix du craft</span>
             <span>Prix de revente</span>
-            <span>Bénéfices</span>
         </div>
         <div class="right">
-            <span>{{ equipment.lastPrice }}</span>
-            <input type="number" [(ngModel)]="equipment.last_seen_price" (ngModelChange)="onSellPriceChange()">
-            <span>{{ equipment.last_seen_price - equipment.lastPrice }}</span>
+            <input type="number" [(ngModel)]="equipment.last_seen_price" (ngModelChange)="patch()">
         </div>
+    </div>
+
+    <div class="header" *ngIf="equipment.last_seen_price && equipment.lastPrice">
+        <h1>Bénéfices</h1>
+        <h1>{{ equipment.benefs }}<span class="k"> K</span></h1>
     </div>
 </div>
 

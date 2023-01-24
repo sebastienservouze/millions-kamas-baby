@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.itemsService.getEquipments().subscribe((equipments: Item[]) => {
       this.equipments = equipments.sort();
+      this.equipments.forEach((equipment: Item) => this.computePrice(equipment));
 
       let selectedItemName = localStorage.getItem('selectedItemName')
       if (selectedItemName) {
@@ -50,16 +51,21 @@ export class HomeComponent implements OnInit {
 
     this.itemsService.getIngredients(this.selectedEquipment).subscribe((ings: []) => {
       this.selectedEquipment.ingredients = ings;
-      this.computePrice();
+      this.computePrice(this.selectedEquipment);
     });
   }
 
-  computePrice() {
-    if (this.selectedEquipment.ingredients.some((ing: any) => ing.lastPrice <= 0)) this.selectedEquipment.lastPrice = 0;
+  computePrice(equipment: Item) {
+    if (equipment.ingredients.some((ing: any) => ing.lastPrice <= 0)) equipment.lastPrice = 0;
     
-    this.selectedEquipment.lastPrice = 0;
-    this.selectedEquipment.ingredients.forEach((ing: any) => {
-      this.selectedEquipment.lastPrice += ing.lastPrice * ing.count;
+    equipment.lastPrice = 0;
+    equipment.ingredients.forEach((ing: any) => {
+      equipment.lastPrice += ing.lastPrice * ing.count;
     })
+  }
+
+  updateSells() {
+    console.log('update');
+    this.equipments = JSON.parse(JSON.stringify(this.equipments));
   }
 }

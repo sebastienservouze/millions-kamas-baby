@@ -12,6 +12,7 @@ export interface Item extends Document {
     picture?: number;
     pa_cost?: number;
     last_seen_price?: number;
+    benefs?: number;
     count?: number;
     ingredients?: [];
     effects?: [];

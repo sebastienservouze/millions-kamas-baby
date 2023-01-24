@@ -1,0 +1,11 @@
+<div class="m-container">
+    <div class="header">
+        <h1>Meilleurs bénéfices</h1>
+    </div>
+    <div class="equipments-container">
+        <div class="equipments" *ngFor="let equipment of sortedEquipments; let index = i">
+            <span>{{ equipment.name }}</span>
+            <span>{{ equipment.benefs }}<span class="k"> K</span></span>
+        </div>
+    </div>
+</div>

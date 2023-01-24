@@ -17,7 +17,9 @@
     </mat-form-field>
   </form>
 
-  <app-equipment-displayer *ngIf="selectedEquipment" [equipment]="selectedEquipment"></app-equipment-displayer>
+  <app-best-sells [equipments]="equipments"></app-best-sells>
+
+  <app-equipment-displayer *ngIf="selectedEquipment" [equipment]="selectedEquipment" (updateSells)="updateSells()"></app-equipment-displayer>
 
 
 </div>

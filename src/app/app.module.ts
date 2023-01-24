@@ -13,6 +13,7 @@ import { MatInputModule} from '@angular/material/input';
 import { EquipmentDisplayerComponent } from './equipment-displayer/equipment-displayer.component';
 import { EffectDisplayerComponent } from './effect-displayer/effect-displayer.component';
 import { IngredientDisplayerComponent } from './ingredient-displayer/ingredient-displayer.component';
+import { BestSellsComponent } from './best-sells/best-sells.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { IngredientDisplayerComponent } from './ingredient-displayer/ingredient-
     EquipmentDisplayerComponent,
     EffectDisplayerComponent,
     IngredientDisplayerComponent,
+    BestSellsComponent,
   ],
   imports: [
     BrowserModule,

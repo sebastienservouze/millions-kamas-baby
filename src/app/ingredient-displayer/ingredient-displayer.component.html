@@ -6,6 +6,7 @@
     </div>
 
     <div class="inputs">
+        {{ totalPrice }} <span *ngIf="percentageOfItemPrice">({{ percentageOfItemPrice }}%)</span>
         <input type="number" [(ngModel)]="ingredient.lastPrice" (ngModelChange)="onUnitaryPriceChange()">
     </div>
 
