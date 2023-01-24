@@ -1,0 +1,18 @@
+<nav>
+    <div class="nav-container">
+        <a class="logo">MKB</a>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input type="text" matInput 
+                placeholder="Rechercher un équipement" 
+                [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <!-- <mat-option *ngFor="let equipment of filteredEquipments" [value]="equipment.name">
+                  <img src="{{ 'assets/imgs/' + equipment.picture + '.png' }}" height="35">
+                  <span>{{equipment.name}}</span>
+                </mat-option> -->
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+    </div>
+</nav>

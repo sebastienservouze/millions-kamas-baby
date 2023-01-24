@@ -14,6 +14,8 @@ import { EquipmentDisplayerComponent } from './equipment-displayer/equipment-dis
 import { EffectDisplayerComponent } from './effect-displayer/effect-displayer.component';
 import { IngredientDisplayerComponent } from './ingredient-displayer/ingredient-displayer.component';
 import { BestSellsComponent } from './best-sells/best-sells.component';
+import { ItemsComponent } from './items/items.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { BestSellsComponent } from './best-sells/best-sells.component';
     EffectDisplayerComponent,
     IngredientDisplayerComponent,
     BestSellsComponent,
+    ItemsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

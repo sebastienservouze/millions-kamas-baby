@@ -1,25 +1,3 @@
 <div class="container">
 
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Equipement</mat-label>
-      <input type="text" matInput 
-        placeholder="Rechercher un équipement" 
-        onclick="select()"
-        [formControl]="control"
-        [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let equipment of filteredEquipments" [value]="equipment.name">
-          <img src="{{ 'assets/imgs/' + equipment.picture + '.png' }}" height="35">
-          <span>{{equipment.name}}</span>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-
-  <app-best-sells [equipments]="equipments"></app-best-sells>
-
-  <app-equipment-displayer *ngIf="selectedEquipment" [equipment]="selectedEquipment" (updateSells)="updateSells()"></app-equipment-displayer>
-
-
 </div>
